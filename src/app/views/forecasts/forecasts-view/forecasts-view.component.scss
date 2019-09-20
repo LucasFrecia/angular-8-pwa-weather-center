@@ -1,0 +1,36 @@
+@import '../../../core/styles/variables.scss';
+
+:host {
+
+
+
+    .container {
+
+        @include body-image;
+
+        position: relative;
+        z-index: 1;
+
+        &>div.desktop-container {
+            min-width: 99vw;
+            position: absolute;
+            margin-top: 20vh;
+
+            &>mat-card {
+                max-width: 18vw;
+                height: 45vh;
+            }
+        }
+
+        &>div.mobile-container {
+            width: 100vw;
+            position: absolute;
+            margin-top: 0vh;
+
+            &>mat-card {
+                height: 70vh;
+                width: 100vw;
+            }
+        }
+    }
+}

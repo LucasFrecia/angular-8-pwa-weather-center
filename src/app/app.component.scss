@@ -1,0 +1,39 @@
+:host {
+  
+    // Footer start
+    .main-footer {
+      background-color: #1a1a1ae8;
+      padding: 5vh;
+      bottom: 0px;
+    }
+  
+    .footer-logo-container {
+        background-color: white;
+        padding: 8px;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+  
+    // Footer end
+  
+    .text-indicator {
+      font-size: 3em;
+      font-family: monospace;
+      font-weight: bold;
+      line-height: 1.1;
+    }
+  
+    .footer-styled-headline {
+      font-size: 22px;
+      font-weight: bold;
+      line-height: 38px;
+      letter-spacing: -0.5px;
+      color: white;
+      display: inline-block;
+      position: relative;
+      margin: 0;
+    }
+  
+  }

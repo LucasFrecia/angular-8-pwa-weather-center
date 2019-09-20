@@ -1,0 +1,19 @@
+@import '../../core/styles/variables.scss';
+
+:host {
+
+    .container {
+        position: relative;
+        z-index: 1;
+
+        &>mat-card {
+            min-width: 25vw;
+            position: fixed;
+            margin-top: 25vh;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @include body-image;
+    }
+}

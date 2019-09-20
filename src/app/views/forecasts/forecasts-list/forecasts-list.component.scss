@@ -1,0 +1,41 @@
+@import '../../../core/styles/variables.scss';
+
+:host {
+
+    mat-card:hover {
+        cursor: pointer;
+    }
+
+    .container {
+
+        @include body-image;
+
+        position: relative;
+        z-index: 1;
+
+        &>div.desktop-container {
+            min-width: 99vw;
+            position: absolute;
+            margin-top: 20vh;
+
+            &>mat-card {
+                max-width: 18vw;
+                height: 45vh;
+                &:hover {
+                    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.55), 0 12px 12px rgba(0, 0, 0, 0.65);
+                }
+            }
+        }
+
+        &>div.mobile-container {
+            width: 100vw;
+            position: absolute;
+            margin-top: 0vh;
+
+            &>mat-card {
+                height: 70vh;
+                width: 100vw;
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<div class="container">
+
+    <img fxFlex
+         src="./assets/weather-main-desktop.gif"
+         src.xs="./assets/main-mobile.gif"
+         src.sm="./assets/main-mobile.gif"
+         ngClass="desktop"
+         ngClass.xs="mobile"
+         ngClass.sm="mobile"
+         alt="weather-central main image"
+         data-test-id="main-image">
+
+    <mat-card fxFlex
+              fxLayout="row wrap"
+              fxLayoutAlign="space-around center">
+        <form [formGroup]="form"
+              #formDirective="ngForm"
+              novalidate
+              [ngxsForm]="formPath"
+              class="p-32">
+            <mat-form-field>
+                <mat-select placeholder="Cities"
+                            formControlName="cityIds"
+                            multiple>
+                    <mat-option *ngFor="let city of (data$| async)"
+                                [value]="city.id">
+                        {{ city.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+        <button mat-raised-button
+                color="primary"
+                (click)="viewCities()"
+                data-test-id="choose-transport-router-btn"
+                [disabled]="(form$ | async)?.status !== 'VALID' || (isLoading$ | async) || (form$ | async).model.cityIds.length < 1">
+            VIEW CITIES
+        </button>
+    </mat-card>
+
+</div>

@@ -1,0 +1,22 @@
+$header-background-color: unquote('#EFEFEF');
+$default-icon-color: unquote('#636363');
+
+
+$viewHighBodyDesktop: 81vh;
+$viewHighBodyMobile: 83vh;
+
+@mixin body-image {
+    &>img {
+        z-index: -1;
+        opacity: .9;
+        width: 100vw;
+
+        &.mobile {
+            height: $viewHighBodyMobile;
+        }
+
+        &.desktop {
+            height: $viewHighBodyDesktop;
+        }
+    }
+}

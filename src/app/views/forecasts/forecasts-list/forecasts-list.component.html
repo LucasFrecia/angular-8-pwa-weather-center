@@ -1,0 +1,74 @@
+<div class="container">
+
+    <img fxFlex
+         src="./assets/forecasts-desktop.gif"
+         src.xs="./assets/main-mobile.gif"
+         src.sm="./assets/main-mobile.gif"
+         ngClass="desktop"
+         ngClass.xs="mobile"
+         ngClass.sm="mobile"
+         alt="weather-central main image"
+         data-test-id="main-image">
+
+    <div ngClass="desktop-container"
+         ngClass.xs="mobile-container"
+         ngClass.sm="mobile-container"
+         fxFlex
+         fxLayoutAlign="space-evenly center"
+         fxLayoutGap.sm="2%"
+         fxLayoutGap.xs="2%"
+         fxLayoutGap.md="4%"
+         fxLayout="row"
+         fxLayout.sm="column"
+         fxLayout.xs="column"
+         fxLayout.md="column"
+         @enter-item>
+
+        <mat-card *ngFor="let city of (cityGroup$ | async)?.list"
+                  fxFlex
+                  fxLayout="column"
+                  (click)="goToItemView(city.id)">
+
+           <!--  {{city | json}} -->
+            <div>
+                <h1> {{ city.name }} </h1>
+            </div>
+            <div fxFlex
+                 fxLayoutAlign="center center">
+                <h2> Description </h2>
+            </div>
+            <div fxFlex
+                 fxLayout="row"
+                 fxLayoutAlign="space-around center">
+                <div>
+                    {{ city.weather[0].description | titlecase }}
+                </div>
+                <div>
+                    <img src="http://openweathermap.org/img/wn/{{city.weather[0].icon}}@2x.png">
+                </div>
+            </div>
+            <div fxFlex
+                 fxLayout="row"
+                 fxLayoutAlign="space-around center">
+                <div>
+                    Temperature
+                </div>
+                <div>
+                    {{ city.main.temp }}
+                </div>
+            </div>
+            <div fxFlex
+                 fxLayout="row"
+                 fxLayoutAlign="space-around center">
+                <div>
+                    Wind Strength
+                </div>
+                <div>
+                    {{ city.wind.speed }} 
+                </div>
+            </div>
+        </mat-card>
+
+    </div>
+
+</div>
