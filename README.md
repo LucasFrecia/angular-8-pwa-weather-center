@@ -41,3 +41,11 @@ I decided to go with ngxs for this test because it is actually the underdog but 
 ### Why PWA?
 
 The PWA experience really changes how the user interacts with our application. It not only allows him to access and view a weba pp as if it where a native app, but also increases speed by an order of magnitude and even allows for browsing without a connection with cached data. I decided to add this since I think it will be an important player n the market the years to come.
+
+## TODO
+
+* Logo and name images for header
+* Tests
+* weather ticker
+* fix console error
+* prettify alignemnt in forecast table and cards
