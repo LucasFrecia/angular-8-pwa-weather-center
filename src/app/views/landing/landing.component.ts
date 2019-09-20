@@ -12,7 +12,10 @@ import {
   FEATURE_ID,
   LandingStoreState
 } from './landing-store/landing-store.state';
-import { Select, Store } from '@ngxs/store';
+import {
+  Select,
+  Store
+} from '@ngxs/store';
 import { Observable } from 'rxjs';
 import {
   CitySelectItemModel,
@@ -21,7 +24,6 @@ import {
 import { CoreComponent } from '@core/core.component';
 import { FormState } from '@core/models/form-state.model';
 import { ViewCitiesAction } from './landing-store/landing-store.actions';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -46,8 +48,7 @@ export class LandingComponent extends CoreComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store,
-    private router: Router) {
+    private store: Store) {
     super();
   }
 

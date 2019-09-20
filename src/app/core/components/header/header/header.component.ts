@@ -15,6 +15,8 @@ import {
 import { transitions } from '@core/animations/animations';
 import { fromEvent } from 'rxjs';
 import { CoreComponent } from '@core/core.component';
+import { GetCityGroupCurrentWeatherAction } from 'app/views/forecasts/forecasts-store/forecasts-store.actions';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-header',

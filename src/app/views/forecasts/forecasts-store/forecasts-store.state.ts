@@ -171,8 +171,14 @@ export class ForecastsStoreState {
     /** Access landing store to get selected Ids */
     const cityIds = this.store.selectSnapshot(LandingStoreState.getSelectedIds).join();
 
+    /** If no cityIds are found, get them from our data */
+    let ownDataCityIds: string;
+    if (!cityIds) {
+      ownDataCityIds = this.store.selectSnapshot(LandingStoreState.getCities).map(x => x.id).join();
+    }
+
     return this.service
-      .getMultipleCityCurrentWeather(cityIds)
+      .getMultipleCityCurrentWeather(cityIds || ownDataCityIds)
       .pipe(
         tap(data => this.store.dispatch(new GetCityGroupCurrentWeatherSuccessAction(data))),
         catchError(errors => this.store.dispatch(new SetErrorAction(errors)))

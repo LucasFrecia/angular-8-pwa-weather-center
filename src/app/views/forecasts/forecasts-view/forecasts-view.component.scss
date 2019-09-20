@@ -1,6 +1,9 @@
 @import '../../../core/styles/variables.scss';
 
 :host {
+    .virtual-scroll-row:hover {
+        background-color: #3f51b599;
+    }
 
     .container {
 

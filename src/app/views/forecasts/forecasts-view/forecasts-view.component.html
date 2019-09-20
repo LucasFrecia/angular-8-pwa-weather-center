@@ -1,7 +1,7 @@
 <div class="container">
 
     <img fxFlex
-         src="./assets/item-view-desktop.gif"
+         src="./assets/forecasts-mountain-desktop.gif"
          src.xs="./assets/main-mobile.gif"
          src.sm="./assets/main-mobile.gif"
          ngClass="desktop"
@@ -26,7 +26,7 @@
 
         <mat-card fxFlex
                   fxLayout="column">
-            <h1> {{ (selectedCity$ | async)?.name }} </h1>
+            <h1> {{ (selectedCity$ | async)?.name }} Now </h1>
             <div fxFlex
                  fxLayoutAlign="center center">
                 <h2> Description </h2>
@@ -63,14 +63,58 @@
             </div>
         </mat-card>
 
-        <mat-card fxFlex="45"
+        <mat-card fxFlex="55"
                   fxLayout="column">
             <h1> Five Day Forecast </h1>
 
+            <div fxLayout="row"
+                 fxLayoutAlign="space-around center">
+                <h3 fxFlex="10">
+                    Time
+                </h3>
+                <h3 fxFlex="10">
+                    Description
+                </h3>
+                <h3 fxFlex="7"></h3>
+                <h3 fxFlex="10">
+                    Wind
+                </h3>
+                <h3 fxFlex="10">
+                    Temp
+                </h3>
+                <h3 fxFlex="10">
+                    Min Temp
+                </h3>
+                <h3 fxFlex="10">
+                    Max Temp
+                </h3>
+            </div>
+
             <cdk-virtual-scroll-viewport itemSize="50"
                                          fxFlex>
-                <div *cdkVirtualFor="let item of (selectedCityForecast$ | async).list">
-                    <img src="http://openweathermap.org/img/wn/{{item.weather[0].icon}}@2x.png">
+                <div *cdkVirtualFor="let item of (selectedCityForecast$ | async)?.list"
+                     fxLayoutAlign="space-around center"
+                     class="virtual-scroll-row">
+                    <div fxFlex="12">
+                        <small>{{ (item.dt_txt | date:'fullDate').split(',')[0] }} {{ item.dt_txt | date:'shortTime' }}</small>
+                    </div>
+                    <div fxFlex="8">
+                        <small> {{ item.weather[0].description | titlecase }} </small>
+                    </div>
+                    <img fxFlex="10"
+                         src="http://openweathermap.org/img/wn/{{item.weather[0].icon}}@2x.png">
+                    <div fxFlex="10">
+                        {{ item.wind.speed }}
+                    </div>
+                    <div fxFlex="10">
+                        {{ item.main.temp }}
+                    </div>
+                    <div fxFlex="10">
+                        {{ item.main.temp_min }}
+                    </div>
+                    <div fxFlex="10">
+                        {{ item.main.temp_max }}
+                    </div>
                 </div>
             </cdk-virtual-scroll-viewport>
         </mat-card>
