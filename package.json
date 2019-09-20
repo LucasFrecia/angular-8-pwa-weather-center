@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng serve --aot -o",
-    "start:pwa": "http-server -p 8080 -c-1 dist/weather-center    ",
+    "start:pwa": "http-server -p 8080 -c-1 dist/weather-center",
     "build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build",
     "test": "ng test",
     "lint": "ng lint",

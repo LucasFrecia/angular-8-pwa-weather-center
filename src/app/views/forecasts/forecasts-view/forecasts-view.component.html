@@ -69,8 +69,7 @@
 
             <cdk-virtual-scroll-viewport itemSize="50"
                                          fxFlex>
-                <div *cdkVirtualFor="let item of (selectedCityForecast$ | async).list"
-                     class="example-item">
+                <div *cdkVirtualFor="let item of (selectedCityForecast$ | async).list">
                     <img src="http://openweathermap.org/img/wn/{{item.weather[0].icon}}@2x.png">
                 </div>
             </cdk-virtual-scroll-viewport>
