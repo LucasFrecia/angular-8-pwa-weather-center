@@ -24,44 +24,12 @@
          fxLayout.md="column"
          @enter-item>
 
-        <mat-card fxFlex
-                  fxLayout="column">
-            <h1> {{ (selectedCity$ | async)?.name }} Now </h1>
-            <div fxFlex
-                 fxLayoutAlign="center center">
-                <h2> Description </h2>
-            </div>
-            <div fxFlex
-                 fxLayout="row"
-                 fxLayoutAlign="space-around center">
-                <div>
-                    {{ (selectedCity$ | async)?.weather[0].description | titlecase }}
-                </div>
-                <div>
-                    <img src="http://openweathermap.org/img/wn/{{(selectedCity$ | async)?.weather[0].icon}}@2x.png">
-                </div>
-            </div>
-            <div fxFlex
-                 fxLayout="row"
-                 fxLayoutAlign="space-around center">
-                <div>
-                    Temperature
-                </div>
-                <div>
-                    {{ (selectedCity$ | async)?.main.temp }}
-                </div>
-            </div>
-            <div fxFlex
-                 fxLayout="row"
-                 fxLayoutAlign="space-around center">
-                <div>
-                    Wind Strength
-                </div>
-                <div>
-                    {{ (selectedCity$ | async)?.wind.speed }}
-                </div>
-            </div>
-        </mat-card>
+        <ng-container *ngFor="let city of (selectedCity$ | async)">
+            <app-current-weather-item [item]="city"
+                                      data-test-id="weather-item-card">
+            </app-current-weather-item>
+        </ng-container>
+
 
         <mat-card fxFlex="55"
                   fxLayout="column">
@@ -69,52 +37,58 @@
 
             <div fxLayout="row"
                  fxLayoutAlign="space-around center">
-                <h3 fxFlex="10">
+                <h3 fxFlex="16.6">
                     Time
                 </h3>
-                <h3 fxFlex="10">
+                <h3 fxFlex="16.6">
                     Description
                 </h3>
-                <h3 fxFlex="7"></h3>
-                <h3 fxFlex="10">
+                <h3 fxFlex="16.6"></h3>
+                <h3 fxFlex="16.6">
                     Wind
                 </h3>
-                <h3 fxFlex="10">
+                <h3 fxFlex="16.6">
                     Temp
                 </h3>
-                <h3 fxFlex="10">
-                    Min Temp
+                <h3 fxFlex="16.6">
+                    Min
                 </h3>
-                <h3 fxFlex="10">
-                    Max Temp
+                <h3 fxFlex="16.6">
+                    Max
                 </h3>
             </div>
-
-            <cdk-virtual-scroll-viewport itemSize="50"
+            <hr>
+            <cdk-virtual-scroll-viewport itemSize="60"
                                          fxFlex>
                 <div *cdkVirtualFor="let item of (selectedCityForecast$ | async)?.list"
                      fxLayoutAlign="space-around center"
-                     class="virtual-scroll-row">
-                    <div fxFlex="12">
-                        <small>{{ (item.dt_txt | date:'fullDate').split(',')[0] }} {{ item.dt_txt | date:'shortTime' }}</small>
+                     class="virtual-scroll-row"
+                     data-test-id="selected-item-forecast-row">
+                    <div fxFlex="16.6">
+                        <small>{{ (item.dt_txt | date:'fullDate').split(',')[0] }}
+                            {{ item.dt_txt | date:'shortTime' }}</small>
                     </div>
-                    <div fxFlex="8">
+                    <div fxFlex="16.6">
                         <small> {{ item.weather[0].description | titlecase }} </small>
                     </div>
-                    <img fxFlex="10"
-                         src="http://openweathermap.org/img/wn/{{item.weather[0].icon}}@2x.png">
-                    <div fxFlex="10">
-                        {{ item.wind.speed }}
+                    <div fxFlex="16.6">
+                        <img height="45"
+                             width="45"
+                             alt="Condition img"
+                             src="http://openweathermap.org/img/wn/{{item.weather[0].icon}}@2x.png">
                     </div>
-                    <div fxFlex="10">
+                    <span fxFlex="16.6">
+                        {{ item.wind.speed }} {{ item.wind.deg | windDIrectionPipe }}
+                    </span>
+                    <span fxFlex="16.6">
                         {{ item.main.temp }}
-                    </div>
-                    <div fxFlex="10">
+                    </span>
+                    <span fxFlex="16.6">
                         {{ item.main.temp_min }}
-                    </div>
-                    <div fxFlex="10">
+                    </span>
+                    <span fxFlex="16.6">
                         {{ item.main.temp_max }}
-                    </div>
+                    </span>
                 </div>
             </cdk-virtual-scroll-viewport>
         </mat-card>

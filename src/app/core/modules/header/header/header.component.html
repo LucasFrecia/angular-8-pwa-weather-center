@@ -1,0 +1,31 @@
+<div class="sticky">
+  <mat-toolbar color="primary"
+               fxFlex
+               [fxLayoutAlign]="titleLayoutAlign$ | async"
+               class="title-toolbar animation-toolbar"
+               [style.margin-top]="(marginSubject$ | async) + 'px'">
+    <mat-toolbar-row *ngIf="(toolbarType$ | async) === 1"
+                     [fxLayoutAlign]="titleLayoutAlign$ | async">
+      <img @left-to-right-enter
+           src="./assets/weather-center-cloud-and-text-logo.jpg"
+           height="100"
+           alt="weather-central logo with name"
+           [routerLink]="['/']">
+    </mat-toolbar-row>
+    <mat-toolbar-row *ngIf="(toolbarType$ | async) === 2">
+      <img @left-to-right-enter
+           src="./assets/weather-center-name-only-logo.jpg"
+           height="45"
+           alt="weather-central name as logo"
+           [routerLink]="['/']">
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<ng-container *ngIf="isLoading$ | async">
+  <mat-progress-bar color="primary"
+                    [mode]="indeterminate">
+  </mat-progress-bar>
+</ng-container>
+
+<app-ticker></app-ticker>

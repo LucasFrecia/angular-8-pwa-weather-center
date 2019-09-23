@@ -1,0 +1,9 @@
+<div class="ticker-wrap">
+    <div class="ticker"
+         fxFlex>
+        <div *ngFor="let item of (tickerData$ | async)"
+             class="ticker-item">
+            {{ item }}
+        </div>
+    </div>
+</div>

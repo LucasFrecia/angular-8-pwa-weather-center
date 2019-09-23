@@ -24,50 +24,12 @@
          fxLayout.md="column"
          @enter-item>
 
-        <mat-card *ngFor="let city of (cityGroup$ | async)?.list"
-                  fxFlex
-                  fxLayout="column"
-                  (click)="goToItemView(city.id)">
-
-           <!--  {{city | json}} -->
-            <div>
-                <h1> {{ city.name }} </h1>
-            </div>
-            <div fxFlex
-                 fxLayoutAlign="center center">
-                <h2> Description </h2>
-            </div>
-            <div fxFlex
-                 fxLayout="row"
-                 fxLayoutAlign="space-around center">
-                <div>
-                    {{ city.weather[0].description | titlecase }}
-                </div>
-                <div>
-                    <img src="http://openweathermap.org/img/wn/{{city.weather[0].icon}}@2x.png">
-                </div>
-            </div>
-            <div fxFlex
-                 fxLayout="row"
-                 fxLayoutAlign="space-around center">
-                <div>
-                    Temperature
-                </div>
-                <div>
-                    {{ city.main.temp }}
-                </div>
-            </div>
-            <div fxFlex
-                 fxLayout="row"
-                 fxLayoutAlign="space-around center">
-                <div>
-                    Wind Strength
-                </div>
-                <div>
-                    {{ city.wind.speed }} 
-                </div>
-            </div>
-        </mat-card>
+        <ng-container *ngFor="let city of (cityGroup$ | async)?.list">
+            <app-current-weather-item [item]="city"
+                                      (click)="goToItemView(city.id)"
+                                      data-test-id="weather-item-card">
+            </app-current-weather-item>
+        </ng-container>
 
     </div>
 

@@ -36,7 +36,7 @@ export class ForecastsService {
         const qs: string[] = ['?'];
 
         /** Add url expected params
-         *  q city name and country code divided by comma, use ISO 3166 country codes
+         *  id city name and country code divided by comma, use ISO 3166 country codes
          */
         qs.push(`id=${id}`);
 

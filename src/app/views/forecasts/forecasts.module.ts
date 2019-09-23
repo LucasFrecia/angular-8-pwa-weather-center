@@ -7,11 +7,13 @@ import { SharedModule } from '@shared/*';
 import { ForecastsStoreState } from './forecasts-store/forecasts-store.state';
 import { NgxsModule } from '@ngxs/store';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CurrentWeatherItemComponent } from './components/current-weather-item/current-weather-item.component';
 
 @NgModule({
   declarations: [
     ForecastsListComponent,
-    ForecastsViewComponent
+    ForecastsViewComponent,
+    CurrentWeatherItemComponent
   ],
   imports: [
     ForecastsRoutingModule,

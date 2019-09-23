@@ -1,7 +1,8 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  OnDestroy
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -19,6 +20,7 @@ import {
   FiveDayForecastModel
 } from '../forecasts-store/forecasts.model';
 import { transitions } from '@core/animations/animations';
+import { StateReset } from 'ngxs-reset-plugin';
 
 @Component({
   selector: 'app-forecasts-view',
@@ -28,7 +30,7 @@ import { transitions } from '@core/animations/animations';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ForecastsViewComponent implements OnInit {
+export class ForecastsViewComponent implements OnInit, OnDestroy {
 
   @Select(ForecastsStoreState.getSelectedCityState)
   public selectedCity$: Observable<CurrentWeatherCityItemModel>;
@@ -52,6 +54,12 @@ export class ForecastsViewComponent implements OnInit {
     ];
 
     this.store.dispatch(getActions);
+  }
+
+  ngOnDestroy(): void {
+    /** Reset the state when component is destroyed */
+    const resetPriorSelection = new StateReset(ForecastsStoreState);
+    this.store.dispatch(resetPriorSelection);
   }
 
 }

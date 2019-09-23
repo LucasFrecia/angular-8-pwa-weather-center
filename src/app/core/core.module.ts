@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderModule } from './components/header/header.module';
-import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
@@ -13,9 +11,10 @@ import { environment } from '@environment/environment';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { HeaderModule } from './modules/header/header.module';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 
 const modules = [
-    CommonModule,
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -34,6 +33,7 @@ const modules = [
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: false }),
     NgxsModule.forRoot([CoreState], { developmentMode: !environment.production }),
     NgxsFormPluginModule.forRoot(),
+    NgxsRouterPluginModule.forRoot(),
 
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng serve --aot -o",
+    "start": "node --max_old_space_size=6144 node_modules/@angular/cli/bin/ng serve --aot -o",
+    "start:prod": "node --max_old_space_size=6144 node_modules/@angular/cli/bin/ng serve --prod -o",
     "start:pwa": "http-server -p 8080 -c-1 dist/weather-center",
-    "build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build",
+    "build:prod": "node --max_old_space_size=6144 node_modules/@angular/cli/bin/ng build --prod",
+    "build:prod:stats": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --prod --stats-json",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "cypress open",
+    "bundle:report": "webpack-bundle-analyzer dist/weather-center/stats-es2015.json"
   },
   "private": true,
   "dependencies": {
@@ -17,7 +20,7 @@
     "@angular/common": "~8.0.1",
     "@angular/compiler": "~8.0.1",
     "@angular/core": "~8.0.1",
-    "@angular/flex-layout": "^8.0.0-beta.27",
+    "@angular/flex-layout": "7.0.0-beta.19",
     "@angular/forms": "~8.0.1",
     "@angular/material": "^8.2.0",
     "@angular/platform-browser": "~8.0.1",
@@ -28,6 +31,7 @@
     "@ngxs/devtools-plugin": "^3.3.2",
     "@ngxs/form-plugin": "^3.5.1",
     "@ngxs/logger-plugin": "^3.3.2",
+    "@ngxs/router-plugin": "^3.5.1",
     "@ngxs/schematics": "^0.0.1-alpha.5",
     "@ngxs/store": "^3.3.2",
     "ngxs-reset-plugin": "^1.2.0",
@@ -45,6 +49,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "cypress": "^3.4.1",
     "http-server": "^0.11.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",

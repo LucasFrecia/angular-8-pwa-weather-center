@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -11,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { WindDirectionPipe } from '@core/pipes/wind-direction.pipe';
+import { CommonModule } from '@angular/common';
 
 const modules = [
     CommonModule,
@@ -21,15 +22,17 @@ const modules = [
     MatButtonModule,
     MatRippleModule,
     MatSelectModule,
-    MatProgressBarModule,
+    MatProgressBarModule
 ];
 
 @NgModule({
+  declarations: [WindDirectionPipe],
   imports: [
     modules
   ],
   exports: [
-    modules
+    modules,
+    WindDirectionPipe
   ]
 })
 export class SharedModule { }

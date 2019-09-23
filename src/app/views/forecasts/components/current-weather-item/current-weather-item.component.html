@@ -1,0 +1,43 @@
+<mat-card fxFlex
+          ngClass="desktop-container"
+          ngClass.xs="mobile-container"
+          ngClass.sm="mobile-container"
+          fxLayout="column"
+          fxLayoutAlign="space-between stretch"
+          data-test-id="itam-card">
+    <div>
+        <h1 data-test-id="item-card-name"> {{ item?.name }} </h1>
+    </div>
+    <div fxFlex
+         fxLayout="row"
+         fxLayoutAlign="space-between center">
+        <span>
+            {{ item?.weather[0].description | titlecase }}
+        </span>
+        <div>
+            <img src="http://openweathermap.org/img/wn/{{item?.weather[0].icon}}@2x.png">
+        </div>
+    </div>
+    <div fxFlex
+         fxLayout="row"
+         fxLayoutAlign="space-between center"
+         fxLayoutGap="16px">
+        <span>
+            Temperature
+        </span>
+        <span>
+            {{ item?.main.temp }}
+        </span>
+    </div>
+    <div fxFlex
+         fxLayout="row"
+         fxLayoutAlign="space-between center"
+         fxLayoutGap="16px">
+        <span>
+            Wind Strength
+        </span>
+        <span>
+            {{ item?.wind.speed }} {{ item?.wind.deg | windDIrectionPipe }}
+        </span>
+    </div>
+</mat-card>

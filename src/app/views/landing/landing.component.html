@@ -21,6 +21,7 @@
             <mat-form-field>
                 <mat-select placeholder="Cities"
                             formControlName="cityIds"
+                            data-test-id="cityIds"
                             multiple>
                     <mat-option *ngFor="let city of (data$| async)"
                                 [value]="city.id">
@@ -32,7 +33,7 @@
         <button mat-raised-button
                 color="primary"
                 (click)="viewCities()"
-                data-test-id="choose-transport-router-btn"
+                data-test-id="submit-landing-form-btn"
                 [disabled]="(form$ | async)?.status !== 'VALID' || (isLoading$ | async) || (form$ | async).model.cityIds.length < 1">
             VIEW CITIES
         </button>

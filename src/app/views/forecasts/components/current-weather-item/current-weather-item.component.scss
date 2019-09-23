@@ -1,0 +1,16 @@
+:host {
+
+    span {
+        font-size: 24px;
+    }
+
+    mat-card.desktop-container {
+        min-width: 18vw;
+        height: 45vh;
+    }
+
+    mat-card.mobile-container {
+        height: 70vh;
+        width: 100vw;
+    }
+}

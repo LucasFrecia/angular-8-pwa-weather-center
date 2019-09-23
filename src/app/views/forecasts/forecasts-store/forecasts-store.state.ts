@@ -79,6 +79,13 @@ export class ForecastsStoreState {
   }
 
   @Selector()
+  public static getAllCityTEmperaturesState(
+    state: ForecastStateModel
+  ): CityGroupCurrentWeatherModel {
+    return state.groupCityCurrentWeather;
+  }
+
+  @Selector()
   public static getGroupCityState(
     state: ForecastStateModel
   ): CityGroupCurrentWeatherModel {
@@ -88,8 +95,8 @@ export class ForecastsStoreState {
   @Selector()
   public static getSelectedCityState(
     state: ForecastStateModel
-  ): CurrentWeatherCityItemModel {
-    return state.selectedCityCurrentWeather;
+  ): CurrentWeatherCityItemModel[] {
+    return [state.selectedCityCurrentWeather];
   }
 
   @Selector()

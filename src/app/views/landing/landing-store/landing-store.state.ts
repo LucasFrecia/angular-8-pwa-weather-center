@@ -15,9 +15,9 @@ import {
   ViewCitiesAction,
   ResetSelectedIds
 } from './landing-store.actions';
-import { Router } from '@angular/router';
+import { Navigate } from '@ngxs/router-plugin';
 
-const defaultData = [
+export const DEFAULT_CITY_DATA = [
   {
     id: 2759794,
     name: 'Amsterdam'
@@ -37,8 +37,37 @@ const defaultData = [
   {
     id: 2643743,
     name: 'London'
+  },
+  {
+    id: 2886242,
+    name: 'Cologne'
+  },
+  {
+    id: 6539761,
+    name: 'Rome'
+  },
+  {
+    id: 264371,
+    name: 'Athens'
+  },
+  {
+    id: 5128581,
+    name: 'New York'
+  },
+  {
+    id: 3833367,
+    name: 'Ushuaia'
+  },
+  {
+    id: 2633352,
+    name: 'York'
+  },
+  {
+    id: 4101260,
+    name: 'Bentonville'
   }
 ];
+
 
 const defaultFilter = {
   cityIds: []
@@ -56,7 +85,7 @@ export const FEATURE_ID = 'landingStore';
 @State<LandingStateModel>({
   name: FEATURE_ID,
   defaults: {
-    cities: defaultData,
+    cities: DEFAULT_CITY_DATA,
     selectedIds: [], // Will hold City ids, after clearing dropdown in form, to be consumed in list view
     form: defaultFormState
   }
@@ -64,10 +93,7 @@ export const FEATURE_ID = 'landingStore';
 
 export class LandingStoreState {
 
-  constructor(
-    private store: Store,
-    private router: Router
-  ) {}
+  constructor(private store: Store) {}
 
   @Selector()
   public static getForm(
@@ -80,7 +106,7 @@ export class LandingStoreState {
   public static getCities(
     state: LandingStateModel
   ): CitySelectItemModel[] {
-    return state.cities;
+    return state.cities.slice(0,5);
   }
 
   @Selector()
@@ -99,7 +125,6 @@ export class LandingStoreState {
     const resetFormAction = new ResetFormAction();
     this.store.dispatch(resetFormAction);
 
-    this.router.navigate([ '/forecasts/list' ]);
   }
 
   @Action(ResetFormAction)
@@ -114,6 +139,8 @@ export class LandingStoreState {
       form: defaultFormState,
       selectedIds: currentState.form.model.cityIds
     });
+
+    this.store.dispatch(new Navigate(['/forecasts/list']));
   }
 
   @Action(ResetSelectedIds)

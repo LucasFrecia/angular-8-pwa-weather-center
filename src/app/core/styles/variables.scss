@@ -8,7 +8,7 @@ $viewHighBodyMobile: 83vh;
 @mixin body-image {
     &>img {
         z-index: -1;
-        opacity: .9;
+     //   opacity: .9;
         width: 100vw;
 
         &.mobile {
